@@ -9,14 +9,14 @@ Please feel free to add corrections, clarifications and more common pitfalls by 
 
 ### Contents
 
-- [Arithmetics Fail.](#)
-- [Class Property Fail](#)
-- [Scope Fail](#)
-- [Oscar Speech Fail / Immutables Part I](#)
-- [Immutable Fail, part II](#)
-- [Cooking the Books Fail](#)
-- [Integer Division Fail](#)
-- [Closure Fail](#)
+- [Arithmetics Fail.](#arithmetics-fail)
+- [Class Property Fail](#class-property-fail)
+- [Scope Fail](#scope-fail)
+- [Oscar Speech Fail / Immutables Part I](#oscar-speech-fail--immutables-part-i)
+- [Immutable Fail, part II](#immutable-fail-part-ii)
+- [Cooking the Books Fail](#cooking-the-books-fail)
+- [Integer Division Fail](#integer-division-fail)
+- [Closure Fail](#closure-fail)
 
 
 ### Arithmetics Fail.
