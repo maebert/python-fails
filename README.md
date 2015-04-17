@@ -292,7 +292,7 @@ ___Why?___ Because in python2, `/` has different meanings depending on wheather 
 
 This is a real-life example from production code I once wrote and now feel very ashamed for.
 
-```
+```python
 def valid_password(pwd):
     return False  # In production, we'd do actual password validation here
 
