@@ -1,4 +1,5 @@
 # How to Shoot Yourself in the Foot with Python
+
 ## Common pitfalls and misunderstandings
 
 ![Snake Fail](http://cl.jroo.me/z3/e/D/s/e/a.baa-snake-will-eat-itself.jpg)
