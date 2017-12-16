@@ -10,7 +10,7 @@ Please feel free to add corrections, clarifications and more common pitfalls by 
 
 ### Contents
 
-- [Arithmetics Fail.](#arithmetics-fail)
+- [Arithmetic Fail](#arithmetic-fail)
 - [Class Property Fail](#class-property-fail)
 - [Scope Fail](#scope-fail)
 - [Oscar Speech Fail / Immutables Part I](#oscar-speech-fail--immutables-part-i)
@@ -20,9 +20,9 @@ Please feel free to add corrections, clarifications and more common pitfalls by 
 - [Closure Fail](#closure-fail)
 
 
-### Arithmetics Fail.
+### Arithmetic Fail
 
-Let's do some first grade arithmetics:
+Let's do some first grade arithmetic:
 
 ```python
 >>> a = 2
@@ -30,7 +30,7 @@ Let's do some first grade arithmetics:
 True
 ```
 
-Works as advertised. Let's see if python can handle slightly larger numbers, too:
+Works as advertised. Let's see if Python can handle slightly larger numbers, too:
 
 ```python
 >>> a = 20
@@ -38,9 +38,9 @@ Works as advertised. Let's see if python can handle slightly larger numbers, too
 False
 ```
 
-__What's happening here?__ Remember that everything in python is an object, even numbers. Also remember that `is` checks for _identity_, not _equality_. So `2 * 2 is 4` is the same as `id(2 * 2) == id(4)`. The reason this works for small numbers is that python creates singletons for integers from -9 to 255 on start-up because they're frequently used -- it's an implementation detail of CPython, not a language feature. However, when we compute `20 * 20`, a new object with value 400 is created, which is a different object than `400`.
+__What's happening here?__ Remember that everything in Python is an object, even numbers. Also remember that `is` checks for _identity_, not _equality_. So `2 * 2 is 4` is the same as `id(2 * 2) == id(4)`. The reason this works for small numbers is that Python creates singletons for integers from -9 to 255 on start-up because they're frequently used -- it's an implementation detail of CPython, not a language feature. However, when we compute `20 * 20`, a new object with value 400 is created, which is a different object than `400`.
 
-> __How do avoid this issue:__ only use `is` to check if things are `True`, `False` or `None`. These are singletons (ie. every `False` in your code is the same object.)
+> __How do avoid this issue:__ only use `is` to check if things are `True`, `False` or `None`. These are singletons (i.e. every `False` in your code is the same object.)
 
 ### Class Property Fail
 
@@ -80,7 +80,7 @@ All as expected. No remember that all mammals are basically __tubes__, and feel 
 3 10 3
 ```
 
-__Why did the awkwardness of dolphins change? Dolphins are *cute*!__ We're dealing with class properties here. If untouched, they are simply references to the parent's class properties. When we set `Platypus.awkwardness = 10` we create a __new__ class property on the Platypus.
+__Why did the awkwardness of dolphins change? Dolphins are *cute*!__ We're dealing with class properties here. If untouched, they are simply references to the parent's class properties. When we set `Platypus.awkwardness = 10` we create a __new__ class property on the platypus class.
 
 ### Scope Fail
 
@@ -134,7 +134,7 @@ The problem here is that Python is, contrary to common misconception, not interp
 
 ### Oscar Speech Fail / Immutables Part I
 
-As any academy award winning director knows, the most unforgivable of all faux pas is to forget to thank your spouse. Let's write a python script that takes care of our Oscar® speech:
+As any academy award winning director knows, the most unforgivable of all faux pas is to forget to thank your spouse. Let's write a Python script that takes care of our Oscar® speech:
 
 ```python
 def oscar_speech(people_to_thank=[]):
@@ -228,21 +228,21 @@ will work perfectly fine.
 
 ### Cooking the Books Fail
 
-Let's turn our attention to the use of Python in the scientific community. A frequent problem many scientists encounter is that their data doesn't _quite_ match the hypothesis. Instead of going through the arduous step of refining our hypothesis, we can just, you know, _tweak_ the data a little bit until it looks like what it was _supposed_ to look like to start with. But just to be safe, let's work on a copy of our data and not touch the original:
+Let's turn our attention to the use of Python in the scientific community. A frequent problem many scientists encounter is that their data doesn't _quite_ match the hypothesis. Instead of going through the arduous step of refining our hypothesis, we can just, you know, _tweak_ the data a little bit until it looks like what it was _supposed_ to look like to start with.
 
 ```python
 data = {
     'x': [0,1,2,3],
     'y': [1,3,9,16]
 }
-actual_data = data.copy()
 ```
 
-So, obviously the effect here is quadratic, right? And the `3` on the y-axis is just a tiny perturbance in our measurements. Let's fix that!
+So, obviously the effect here is quadratic, right? And the `3` on the y-axis is just a tiny perturbance in our measurements. Let's fix that! But just to be safe, let's work on a copy of our data and not touch the original:
 
 ```python
->>> actual_data['y'][1] = 4
->>> print(actual_data)
+>>> baked_data = data.copy()
+>>> baked_data['y'][1] = 4
+>>> print(baked_data)
 {'y': [1, 4, 9, 16], 'x': [0, 1, 2, 3]}
 ```
 
@@ -255,7 +255,7 @@ Much better! Let's just make sure our original data is still the same.
 
 __Damn.__ When we created a copy of our data, we actually created a so-called __shallow copy__. This means that we create a new `dict` object, but we only copy the references of the keys and values. So the list we're altering in `baked_data` is actually the same list as the one in the original `data`.
 
-Similarly, copying a list with `[:]`, as in `my_list = [1,2,3]; new_list = my_list[:]` only creates a shallow copy and can lead to similar unexpected effects.
+Similarly, copying a list with `[:]`, as in `my_list = [[1, 2], 3, 4, 5], ; new_list = my_list[:]` only creates a shallow copy and can lead to similar unexpected effects.
 
 > __How to avoid this issue:__ Use the `deepcopy` module.
 
@@ -269,11 +269,11 @@ middle = len(ducks) / 2
 print(ducks[middle])
 ```
 
-As any adventurous and brave Pythonista does these days, you upgrade your code to Python 3, and suddenly:
+As any adventurous and brave pythonista does these days, you upgrade your code to Python3, and suddenly:
 
 
 ```python
-# In python3
+# In Python3
 ducks = ["Donald", "Huey", "Dewey", "Louie"]
 middle = len(ducks) / 2
 print(ducks[middle])
@@ -285,7 +285,7 @@ in <module>
 TypeError: list indices must be integers, not float
 ```
 
-___Why?___ Because in python2, `/` has different meanings depending on wheather you feed in floats or integers. If both left and right side are integers, the result will also be an integer. In python3, `/` will __always__ produce a float, and of course you can't index a list with floats.
+___Why?___ Because in Python2, `/` has different meanings depending on wheather you feed in floats or integers. If both left and right side are integers, the result will also be an integer. In Python3, `/` will __always__ produce a float, and of course you can't index a list with floats.
 
 > __How to avoid this issue:__ Use `//` for integer devision.
 
@@ -310,7 +310,7 @@ def get_password():
     return False
 ```
 
-Let's let this sink in for a second. The crucial and most shameful part is `wrong_password_prompts`, where we return a list of three anonumous functions. The first function should return `"Password xyz incorrect - 3 attempts left"` when called with password `"xyz"`. The second function should return `"Password xyz incorrect - 2 attempts left"` and so on. Let's see what happens:
+Let this sink in for a second. The crucial and most shameful part is `wrong_password_prompts`, where we return a list of three anonymous functions. The first function should return `"Password xyz incorrect - 3 attempts left"` when called with password `"xyz"`. The second function should return `"Password xyz incorrect - 2 attempts left"` and so on. Let's see what happens:
 
 ```python
 >>> get_password()
